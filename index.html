@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="MoviesApp">
+    <head>
+        <meta charset="utf-8">
+        <title>Recommended Movies</title>
+        <link rel="stylesheet" type="text/css" href="Style/style.css">
+        <link href='https://fonts.googleapis.com/css?family=Alef:400&subset=hebrew,latin' rel='stylesheet' type='text/css'>
+        <script src="Scripts/angular.min.js"></script>
+        <script src="Scripts/angular-route.min.js"></script>
+        <script src="Scripts/jquery-1.12.3.min.js"></script>
+        <script src="Scripts/app.js"></script>
+    </head>
+
+    <body>
+        <header>הסרטים הכי טובים 2016</header>
+        <nav>
+            <div class="buttons">
+                <button type="button" ng-click="categoryFilter={category: 'comedy'}">קומדיה</button>
+                <button type="button" ng-click="categoryFilter={category: 'drama'}">דרמה</button>
+                <button type="button" ng-click="categoryFilter={category: 'action'}">פעולה</button>
+            </div>
+            <div class="search">
+                <input class="searchbar" type="text" placeholder="חיפוש לפי שם סרט" ng-model="query" />
+            </div>
+        </nav>
+        
+        <main ng-controller="moviesCtrl">
+            <div class="movies" ng-repeat="movie in movies | filter: query | filter: categoryFilter">
+                <div class="movie-block">
+                    <div><img src="{{ movie.Poster }}" /></div>
+                    <div class="movieinfo">
+                        <div> {{ movie.Name }} </div>
+                        <div class="moviedesc"> {{ movie.desc }} </div>
+                        <div class="rating">
+                            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>ABC Design 2016 &copy;</footer>
+<!--        <ng-view></ng-view>-->
+    </body>
+</html>
