@@ -1,27 +1,4 @@
-var MoviesApp = angular.module('MoviesApp', ['ngRoute']);
-
-MoviesApp.config(function($routeProvider) {
-$routeProvider
-        .when('/comedy', {
-            templateUrl : '/partials/comedy.html',
-            controller  : 'comedyCtrl',
-            controllerAs: 'comedy'
-        })
-        .when('/action', {
-            templateUrl : '/partials/action.html',
-            controller  : 'actionCtrl',
-            controllerAs: 'action'
-        })
-        .when('/drama', {
-            templateUrl : '/partials/drama.html',
-            controller  : 'dramaCtrl',
-            controllerAs: 'drama'
-        })
-        .otherwise({
-            redirectTo: '/'
-        });
-    
-});
+var MoviesApp = angular.module('MoviesApp', []);
 
 MoviesApp.controller('comedyCtrl', function($scope) {
     
