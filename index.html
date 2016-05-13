@@ -9,7 +9,7 @@
         <script src="Scripts/app.js"></script>
     </head>
 
-    <body>
+    <body ng-controller="moviesCtrl">
         <header>הסרטים הכי טובים 2016</header>
         <nav>
             <div class="buttons">
@@ -17,25 +17,44 @@
                 <button type="button" ng-click="categoryFilter={category: 'drama'}">דרמה</button>
                 <button type="button" ng-click="categoryFilter={category: 'action'}">פעולה</button>
             </div>
-            <div class="search">
-                <input class="searchbar" type="text" placeholder="חיפוש לפי שם סרט" ng-model="query" />
+            <div>
+                <input class="searchbar" type="text" placeholder="חיפוש לפי שם סרט" ng-model="query" ng-init="omdb_movie.Response = 'False'" ng-change="searchOnline(query)" />
             </div>
         </nav>
         
-        <main ng-controller="moviesCtrl">
-            <div class="movies" ng-repeat="movie in movies | filter: query | filter: categoryFilter">
-                <div class="movie-block">
-                    <div><img src="{{ movie.Poster }}" /></div>
-                    <div class="movieinfo">
-                        <div> {{ movie.Name }} </div>
-                        <div class="moviedesc"> {{ movie.desc }} </div>
-                        <div class="rating">
-                            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+        <main>
+            <section id="localsearch">
+                <div class="movies" ng-repeat="movie in movies | filter: query | filter: categoryFilter">
+                    <div class="movie-block">
+                        <div><img src="{{ movie.Poster }}" /></div>
+                        <div class="movieinfo">
+                            <div> {{ movie.Name }} </div>
+                            <div class="moviedesc"> {{ movie.desc }} </div>
+                            <div class="rating">
+                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
+            <section>
+                <div class="movies" ng-hide="omdb_movie.Response == 'False' ">
+                    <h2>Online Search</h2>
+                    <div class="movie-block">
+                        <div><img src="{{ omdb_movie.Poster }}" /></div>
+                        <div class="movieinfo">
+                            <div> {{ omdb_movie.Title }} </div>
+                            <div class="moviedesc"> {{ omdb_movie.Plot }} </div>
+                            <div class="rating">
+                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
+        
+        
         <footer>ABC Design 2016 &copy;</footer>
 <!--        <ng-view></ng-view>-->
     </body>

@@ -8,6 +8,10 @@ html, body {
     flex-wrap: wrap;
 }
 
+body {
+    display: flex;
+}
+
 header {
     color: rgb(103,53,187);
     text-align: center;
@@ -57,10 +61,6 @@ nav button:active {
 	top:1px;
 }
 
-nav .search {
-    float: left;
-}
-
 nav .search input {
     padding: 8px;
     border: 1px solid lightgray;
@@ -71,7 +71,7 @@ nav .search input:active {
     border: 1px solid blue;
 }
 
-main {
+main #localsearch {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -79,51 +79,49 @@ main {
     width: 100%;
 }
 
-main .movies {
-/*    margin: 25px;*/
-/*    padding: 10px;*/
-/*    direction: ltr;*/
-/*    border: 1px solid black;*/
+.movies {
     padding: 3px;
     margin: 6px;
 }
 
-main .movies div {
+.movies div {
 /*    padding: 0px 3px;*/
     margin-top: -6px;
 }
 
-main .movie-block {
+.movie-block {
     width: 171px;
 }
 
-main .movies img {
+.movies img {
     width: 175px;
     height: 250px;
 }
 
-main .movies .movieinfo {
+.movies .movieinfo {
     background-color: rgb(217,206,235);
     width: 175px;
     border-bottom: 4px solid purple;
+    direction: ltr;
 }
 
-main .movies .moviedesc {
+.movies .moviedesc {
     font-size: 12px;
+    
 }
 
-main .movies .rating {
+.movies .rating {
     text-align: left;
     unicode-bidi: bidi-override;
 }
 
-main .movies .rating > span {
+.movies .rating > span {
     display: inline-block;
     position: relative;
 }
 
-main .movies .rating > span:hover:before,
-main .movies .rating > span:hover ~ span:before{
+.movies .rating > span:hover:before,
+.movies .rating > span:hover ~ span:before{
     content: "\2605";
     position: absolute;
 }

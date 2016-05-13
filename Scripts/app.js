@@ -1,20 +1,17 @@
 var MoviesApp = angular.module('MoviesApp', []);
 
-MoviesApp.controller('comedyCtrl', function($scope) {
-    
-});
-
-MoviesApp.controller('actionCtrl', function($scope) {
-
-});
-
-MoviesApp.controller('dramaCtrl', function($scope) {
-
-});
-
 MoviesApp.controller('moviesCtrl', function($scope, $http) {
-    // In future, will be taken from DB
+    // from local DB
     $http.get("movies.json").success(function(response) {
        $scope.movies = response.MovieList.Movies; 
     });
+    
+    // from online DB
+    $scope.searchOnline = function(movieName) {
+        $http.get("http://www.omdbapi.com/?t=" + movieName).success(function(response) {
+            $scope.omdb_movie = response;
+            console.log(response);
+        });
+    };
+    
 });
